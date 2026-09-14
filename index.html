@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sistema Endocrino | Mapa Hormonal</title>
+
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
+
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     ENCABEZADO
+     ===================================================== -->
+
+<header class="topbar">
+
+    <div>
+
+        <h1>
+            SISTEMA ENDOCRINO
+        </h1>
+
+        <p>
+            MAPA INTERACTIVO DE HOTMONAS Y EJES ENDOCRINOS
+        </p>
+                <p>
+            DALIA ELIZABETH GARCIA SANCHEZ
+        </p>
+                        <p>
+            FISIOPATOLOGIA
+        </p>
+
+    </div>
+
+
+    <div class="counter">
+
+        <span id="currentHormone">
+            1
+        </span>
+
+        <span>
+            /
+        </span>
+
+        <span id="totalHormones">
+            44
+        </span>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     APLICACIÓN PRINCIPAL
+     ===================================================== -->
+
+<main class="app">
+
+
+    <!-- =================================================
+         PANEL IZQUIERDO
+         ================================================= -->
+
+    <aside class="sidebar">
+
+
+        <!-- BUSCADOR -->
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar hormona..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+
+        <!-- CONTROLES -->
+
+        <div class="controls">
+
+            <button id="playBtn">
+                ▶ Reproducir
+            </button>
+
+            <button id="pauseBtn">
+                ⏸ Pausar
+            </button>
+
+            <button id="prevBtn">
+                ← Anterior
+            </button>
+
+            <button id="nextBtn">
+                Siguiente →
+            </button>
+
+        </div>
+
+
+
+        <!-- LISTA DE HORMONAS -->
+
+        <div
+            class="hormone-list"
+            id="hormoneList"
+        >
+
+            <!-- JavaScript genera aquí las hormonas -->
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =================================================
+         ÁREA VISUAL
+         ================================================= -->
+
+    <section class="visual-area">
+
+
+        <!-- TÍTULO -->
+
+        <div class="section-title">
+
+            <span class="pulse"></span>
+
+            RUTA HORMONAL
+
+        </div>
+
+
+
+        <!-- =================================================
+             CONTENEDOR DEL CUERPO
+             ================================================= -->
+
+        <div
+            class="body-container"
+            id="bodyContainer"
+        >
+
+
+            <!-- =================================================
+                 SILUETA HUMANA
+                 ================================================= -->
+
+            <div
+                class="human-body"
+                id="humanBody"
+            >
+
+
+                <!-- =============================================
+                     CABEZA
+                     ============================================= -->
+
+                <div class="head"></div>
+
+
+                <!-- =============================================
+                     CUELLO
+                     ============================================= -->
+
+                <div class="neck"></div>
+
+
+                <!-- =============================================
+                     TORSO
+                     ============================================= -->
+
+                <div class="torso"></div>
+
+
+                <!-- =============================================
+                     BRAZOS
+                     ============================================= -->
+
+                <div class="arm left-arm"></div>
+
+                <div class="arm right-arm"></div>
+
+
+                <!-- =============================================
+                     PIERNAS
+                     ============================================= -->
+
+                <div class="leg left-leg"></div>
+
+                <div class="leg right-leg"></div>
+
+
+
+                <!-- =================================================
+                     SISTEMA ENDOCRINO
+                     ================================================= -->
+
+
+                <!-- =============================================
+                     GLÁNDULA PINEAL
+                     ============================================= -->
+
+                <button
+                    class="organ pineal"
+                    data-organ="Glándula pineal"
+                    style="top:7%; left:50%;"
+                    title="Glándula pineal"
+                >
+                    <span>PINEAL</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     HIPOTÁLAMO
+                     ============================================= -->
+
+                <button
+                    class="organ hypothalamus"
+                    data-organ="Hipotálamo"
+                    style="top:10%; left:50%;"
+                    title="Hipotálamo"
+                >
+                    <span>HIPOTÁLAMO</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     HIPÓFISIS
+                     ============================================= -->
+
+                <button
+                    class="organ pituitary"
+                    data-organ="Hipófisis"
+                    data-adenohypophysis="Adenohipófisis"
+                    data-neurohypophysis="Neurohipófisis"
+                    style="top:13%; left:50%;"
+                    title="Hipófisis"
+                >
+                    <span>HIPÓFISIS</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     TIROIDES
+                     ============================================= -->
+
+                <button
+                    class="organ thyroid"
+                    data-organ="Tiroides"
+                    style="top:24%; left:50%;"
+                    title="Tiroides"
+                >
+                    <span>TIROIDES</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     PARATIROIDES
+                     ============================================= -->
+
+                <button
+                    class="organ parathyroid"
+                    data-organ="Paratiroides"
+                    style="top:25%; left:53%;"
+                    title="Paratiroides"
+                >
+                    <span>PARATIROIDES</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     TIMO
+                     ============================================= -->
+
+                <button
+                    class="organ thymus"
+                    data-organ="Timo"
+                    style="top:31%; left:50%;"
+                    title="Timo"
+                >
+                    <span>TIMO</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     SUPRARRENAL IZQUIERDA
+                     ============================================= -->
+
+                <button
+                    class="organ adrenal-left"
+                    data-organ="Corteza suprarrenal"
+                    data-medulla="Médula suprarrenal"
+                    style="top:42%; left:43%;"
+                    title="Glándula suprarrenal izquierda"
+                >
+                    <span>SUPRA</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     SUPRARRENAL DERECHA
+                     ============================================= -->
+
+                <button
+                    class="organ adrenal-right"
+                    data-organ="Corteza suprarrenal"
+                    data-medulla="Médula suprarrenal"
+                    style="top:42%; left:57%;"
+                    title="Glándula suprarrenal derecha"
+                >
+                    <span>SUPRA</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     HÍGADO
+                     ============================================= -->
+
+                <button
+                    class="organ liver"
+                    data-organ="Hígado"
+                    style="top:45%; left:58%;"
+                    title="Hígado"
+                >
+                    <span>HÍGADO</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     RIÑÓN IZQUIERDO
+                     ============================================= -->
+
+                <button
+                    class="organ kidney"
+                    data-organ="Riñón"
+                    style="top:49%; left:43%;"
+                    title="Riñón izquierdo"
+                >
+                    <span>RIÑÓN</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     RIÑÓN DERECHO
+                     ============================================= -->
+
+                <button
+                    class="organ kidney"
+                    data-organ="Riñón"
+                    style="top:49%; left:57%;"
+                    title="Riñón derecho"
+                >
+                    <span>RIÑÓN</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     PÁNCREAS
+                     ============================================= -->
+
+                <button
+                    class="organ pancreas"
+                    data-organ="Páncreas"
+                    style="top:52%; left:50%;"
+                    title="Páncreas"
+                >
+                    <span>PÁNCREAS</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     ESTÓMAGO
+                     ============================================= -->
+
+                <button
+                    class="organ stomach"
+                    data-organ="Estómago"
+                    style="top:55%; left:57%;"
+                    title="Estómago"
+                >
+                    <span>ESTÓMAGO</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     DUODENO
+                     ============================================= -->
+
+                <button
+                    class="organ duodenum"
+                    data-organ="Duodeno"
+                    style="top:57%; left:50%;"
+                    title="Duodeno"
+                >
+                    <span>DUODENO</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     OVARIO IZQUIERDO
+                     ============================================= -->
+
+                <button
+                    class="organ ovary"
+                    data-organ="Ovarios"
+                    style="top:66%; left:43%;"
+                    title="Ovario izquierdo"
+                >
+                    <span>OVARIO</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     OVARIO DERECHO
+                     ============================================= -->
+
+                <button
+                    class="organ ovary"
+                    data-organ="Ovarios"
+                    style="top:66%; left:57%;"
+                    title="Ovario derecho"
+                >
+                    <span>OVARIO</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     TESTÍCULO IZQUIERDO
+                     ============================================= -->
+
+                <button
+                    class="organ testis"
+                    data-organ="Testículos"
+                    style="top:75%; left:46%;"
+                    title="Testículo izquierdo"
+                >
+                    <span>TESTÍCULO</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     TESTÍCULO DERECHO
+                     ============================================= -->
+
+                <button
+                    class="organ testis"
+                    data-organ="Testículos"
+                    style="top:75%; left:54%;"
+                    title="Testículo derecho"
+                >
+                    <span>TESTÍCULO</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     TEJIDO ADIPOSO
+                     ============================================= -->
+
+                <button
+                    class="organ adipose"
+                    data-organ="Tejido adiposo"
+                    style="top:60%; left:39%;"
+                    title="Tejido adiposo"
+                >
+                    <span>ADIPOSO</span>
+                </button>
+
+
+
+                <!-- =============================================
+                     PLACENTA
+                     ============================================= -->
+
+                <button
+                    class="organ placenta"
+                    data-organ="Placenta"
+                    style="top:60%; left:61%;"
+                    title="Placenta"
+                >
+                    <span>PLACENTA</span>
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SVG PARA LAS RUTAS HORMONALES
+                 ================================================= -->
+
+            <svg
+                id="routeSvg"
+                class="route-svg"
+                viewBox="0 0 1000 900"
+                preserveAspectRatio="none"
+            >
+
+
+                <!-- =============================================
+                     DEFINICIONES
+                     ============================================= -->
+
+                <defs>
+
+
+                    <!-- GLOW GENERAL -->
+
+                    <filter id="glow">
+
+                        <feGaussianBlur
+                            stdDeviation="4"
+                            result="blur"
+                        />
+
+                        <feMerge>
+
+                            <feMergeNode
+                                in="blur"
+                            ></feMergeNode>
+
+                            <feMergeNode
+                                in="SourceGraphic"
+                            ></feMergeNode>
+
+                        </feMerge>
+
+                    </filter>
+
+
+                    <!-- GLOW ROJO -->
+
+                    <filter id="redGlow">
+
+                        <feGaussianBlur
+                            stdDeviation="5"
+                            result="blur"
+                        />
+
+                        <feMerge>
+
+                            <feMergeNode
+                                in="blur"
+                            ></feMergeNode>
+
+                            <feMergeNode
+                                in="SourceGraphic"
+                            ></feMergeNode>
+
+                        </feMerge>
+
+                    </filter>
+
+
+                    <!-- GLOW BLANCO -->
+
+                    <filter id="whiteGlow">
+
+                        <feGaussianBlur
+                            stdDeviation="4"
+                            result="blur"
+                        />
+
+                        <feMerge>
+
+                            <feMergeNode
+                                in="blur"
+                            ></feMergeNode>
+
+                            <feMergeNode
+                                in="SourceGraphic"
+                            ></feMergeNode>
+
+                        </feMerge>
+
+                    </filter>
+
+
+                </defs>
+
+
+
+                <!-- =================================================
+                     RUTA PRINCIPAL
+                     ================================================= -->
+
+                <path
+                    id="hormoneRoute"
+                    class="route hormone"
+                    d=""
+                ></path>
+
+
+
+                <!-- =================================================
+                     RUTA DE FEEDBACK
+                     ================================================= -->
+
+                <path
+                    id="feedbackRoute"
+                    class="route feedback"
+                    d=""
+                ></path>
+
+
+
+                <!-- =================================================
+                     PARTÍCULA HORMONAL
+                     ================================================= -->
+
+                <circle
+                    id="routeParticle"
+                    class="particle hormone"
+                    cx="0"
+                    cy="0"
+                    r="7"
+                ></circle>
+
+
+            </svg>
+
+
+
+            <!-- =================================================
+                 LEYENDA
+                 ================================================= -->
+
+            <div class="legend">
+
+
+                <div>
+
+                    <span
+                        class="legend-dot legend-origin"
+                    ></span>
+
+                    <span>
+                        ORIGEN
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span
+                        class="legend-dot legend-hormone"
+                    ></span>
+
+                    <span>
+                        HORMONA
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span
+                        class="legend-dot legend-target"
+                    ></span>
+
+                    <span>
+                        DIANA
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PANEL DERECHO
+         ================================================= -->
+
+    <aside class="info-panel">
+
+
+        <!-- ENCABEZADO -->
+
+        <div class="info-header">
+
+            <span>
+                HORMONA
+            </span>
+
+            <h2 id="hormoneName">
+                Hormona
+            </h2>
+
+        </div>
+
+
+
+        <!-- INFORMACIÓN -->
+
+        <div class="info-card">
+
+
+            <!-- ORIGEN -->
+
+            <div class="info-item">
+
+                <label>
+                    ORIGEN
+                </label>
+
+                <p id="hormoneOrigin">
+                    —
+                </p>
+
+            </div>
+
+
+
+            <!-- DIANA -->
+
+            <div class="info-item">
+
+                <label>
+                    ÓRGANO DIANA
+                </label>
+
+                <p id="hormoneTarget">
+                    —
+                </p>
+
+            </div>
+
+
+
+            <!-- FUNCIÓN -->
+
+            <div class="info-item">
+
+                <label>
+                    FUNCIÓN
+                </label>
+
+                <p id="hormoneFunction">
+                    —
+                </p>
+
+            </div>
+
+
+
+            <!-- TIPO -->
+
+            <div class="info-item">
+
+                <label>
+                    TIPO
+                </label>
+
+                <p id="hormoneType">
+                    —
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             PROGRESO
+             ================================================= -->
+
+        <div class="progress-container">
+
+
+            <div class="progress-label">
+
+                <span>
+                    PROGRESO
+                </span>
+
+                <span id="progressText">
+                    1 / 44
+                </span>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar"
+                ></div>
+
+            </div>
+
+
+        </div>
+
+
+    </aside>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer>
+
+    <div>
+        SISTEMA ENDOCRINO INTERACTIVO
+    </div>
+
+    <div>
+        HTML · CSS · JAVASCRIPT
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
