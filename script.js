@@ -1,6 +1,7 @@
 /* =========================================================
    SISTEMA ENDOCRINO INTERACTIVO
    MAPA HORMONAL
+   JAVASCRIPT COMPLETO
    ========================================================= */
 
 
@@ -10,13 +11,18 @@
 
 const hormones = [
 
+    /* =========================
+       HIPOTÁLAMO
+       ========================= */
+
     {
         name: "TRH",
         fullName: "Hormona liberadora de tirotropina",
         origin: "Hipotálamo",
         target: "Adenohipófisis",
         type: "Hormona liberadora",
-        function: "Estimula la secreción de TSH."
+        function: "Estimula la secreción de TSH.",
+        axis: "Eje hipotálamo-hipófisis-tiroides"
     },
 
     {
@@ -25,7 +31,8 @@ const hormones = [
         origin: "Hipotálamo",
         target: "Adenohipófisis",
         type: "Hormona liberadora",
-        function: "Estimula la secreción de ACTH."
+        function: "Estimula la secreción de ACTH.",
+        axis: "Eje hipotálamo-hipófisis-suprarrenal"
     },
 
     {
@@ -34,7 +41,8 @@ const hormones = [
         origin: "Hipotálamo",
         target: "Adenohipófisis",
         type: "Hormona liberadora",
-        function: "Estimula la secreción de LH y FSH."
+        function: "Estimula la secreción de LH y FSH.",
+        axis: "Eje hipotálamo-hipófisis-gónadas"
     },
 
     {
@@ -43,26 +51,34 @@ const hormones = [
         origin: "Hipotálamo",
         target: "Adenohipófisis",
         type: "Hormona liberadora",
-        function: "Estimula la secreción de GH."
+        function: "Estimula la secreción de GH.",
+        axis: "Eje GH-IGF-1"
     },
 
     {
         name: "Somatostatina",
-        fullName: "Somatostatina",
+        fullName: "Somatostatina hipotalámica",
         origin: "Hipotálamo",
         target: "Adenohipófisis",
         type: "Hormona inhibidora",
-        function: "Inhibe principalmente GH y TSH."
+        function: "Inhibe principalmente la secreción de GH y TSH.",
+        axis: "Eje GH-IGF-1"
     },
 
     {
         name: "Dopamina",
-        fullName: "Dopamina",
+        fullName: "Dopamina hipotalámica",
         origin: "Hipotálamo",
         target: "Adenohipófisis",
         type: "Hormona inhibidora",
-        function: "Inhibe la secreción de prolactina."
+        function: "Inhibe principalmente la secreción de prolactina.",
+        axis: "Eje prolactina"
     },
+
+
+    /* =========================
+       ADENOHIPÓFISIS
+       ========================= */
 
     {
         name: "GH",
@@ -70,7 +86,8 @@ const hormones = [
         origin: "Adenohipófisis",
         target: "Hígado y tejidos",
         type: "Proteica",
-        function: "Promueve crecimiento y síntesis proteica."
+        function: "Promueve crecimiento y síntesis proteica.",
+        axis: "Eje GH-IGF-1"
     },
 
     {
@@ -79,7 +96,8 @@ const hormones = [
         origin: "Adenohipófisis",
         target: "Tiroides",
         type: "Glucoproteína",
-        function: "Estimula la síntesis y liberación de T3 y T4."
+        function: "Estimula la síntesis y liberación de T3 y T4.",
+        axis: "Eje hipotálamo-hipófisis-tiroides"
     },
 
     {
@@ -88,7 +106,8 @@ const hormones = [
         origin: "Adenohipófisis",
         target: "Corteza suprarrenal",
         type: "Peptídica",
-        function: "Estimula principalmente la producción de cortisol."
+        function: "Estimula principalmente la producción de cortisol.",
+        axis: "Eje hipotálamo-hipófisis-suprarrenal"
     },
 
     {
@@ -97,7 +116,8 @@ const hormones = [
         origin: "Adenohipófisis",
         target: "Ovarios / Testículos",
         type: "Glucoproteína",
-        function: "Participa en la gametogénesis y función gonadal."
+        function: "Participa en la gametogénesis y función gonadal.",
+        axis: "Eje hipotálamo-hipófisis-gónadas"
     },
 
     {
@@ -106,7 +126,8 @@ const hormones = [
         origin: "Adenohipófisis",
         target: "Ovarios / Testículos",
         type: "Glucoproteína",
-        function: "Participa en ovulación y producción de testosterona."
+        function: "Participa en la ovulación y producción de testosterona.",
+        axis: "Eje hipotálamo-hipófisis-gónadas"
     },
 
     {
@@ -115,7 +136,8 @@ const hormones = [
         origin: "Adenohipófisis",
         target: "Glándula mamaria",
         type: "Proteica",
-        function: "Estimula la producción de leche."
+        function: "Estimula la producción de leche.",
+        axis: "Eje prolactina"
     },
 
     {
@@ -124,8 +146,14 @@ const hormones = [
         origin: "Adenohipófisis",
         target: "Melanocitos",
         type: "Peptídica",
-        function: "Estimula la producción de melanina."
+        function: "Estimula la producción de melanina.",
+        axis: "Regulación melanocítica"
     },
+
+
+    /* =========================
+       NEUROHIPÓFISIS
+       ========================= */
 
     {
         name: "ADH",
@@ -133,7 +161,8 @@ const hormones = [
         origin: "Neurohipófisis",
         target: "Riñones",
         type: "Peptídica",
-        function: "Favorece la reabsorción de agua."
+        function: "Favorece la reabsorción de agua.",
+        axis: "Balance hidroelectrolítico"
     },
 
     {
@@ -142,8 +171,14 @@ const hormones = [
         origin: "Neurohipófisis",
         target: "Útero / Glándula mamaria",
         type: "Peptídica",
-        function: "Participa en contracción uterina y eyección de leche."
+        function: "Participa en la contracción uterina y eyección de leche.",
+        axis: "Reproducción y lactancia"
     },
+
+
+    /* =========================
+       TIROIDES
+       ========================= */
 
     {
         name: "T3",
@@ -151,7 +186,8 @@ const hormones = [
         origin: "Tiroides",
         target: "Tejidos corporales",
         type: "Hormona tiroidea",
-        function: "Aumenta el metabolismo celular."
+        function: "Aumenta el metabolismo celular.",
+        axis: "Eje hipotálamo-hipófisis-tiroides"
     },
 
     {
@@ -160,7 +196,8 @@ const hormones = [
         origin: "Tiroides",
         target: "Tejidos corporales",
         type: "Hormona tiroidea",
-        function: "Regula metabolismo, crecimiento y desarrollo."
+        function: "Regula metabolismo, crecimiento y desarrollo.",
+        axis: "Eje hipotálamo-hipófisis-tiroides"
     },
 
     {
@@ -169,8 +206,14 @@ const hormones = [
         origin: "Tiroides",
         target: "Hueso",
         type: "Peptídica",
-        function: "Disminuye la concentración de calcio sanguíneo."
+        function: "Disminuye la concentración de calcio sanguíneo.",
+        axis: "Homeostasis del calcio"
     },
+
+
+    /* =========================
+       PARATIROIDES
+       ========================= */
 
     {
         name: "PTH",
@@ -178,8 +221,14 @@ const hormones = [
         origin: "Paratiroides",
         target: "Hueso / Riñón",
         type: "Peptídica",
-        function: "Aumenta el calcio sanguíneo."
+        function: "Aumenta la concentración de calcio sanguíneo.",
+        axis: "Homeostasis del calcio"
     },
+
+
+    /* =========================
+       SUPRARRENAL
+       ========================= */
 
     {
         name: "Cortisol",
@@ -187,7 +236,8 @@ const hormones = [
         origin: "Corteza suprarrenal",
         target: "Múltiples tejidos",
         type: "Esteroidea",
-        function: "Participa en respuesta al estrés y metabolismo."
+        function: "Participa en la respuesta al estrés y regulación metabólica.",
+        axis: "Eje hipotálamo-hipófisis-suprarrenal"
     },
 
     {
@@ -196,7 +246,8 @@ const hormones = [
         origin: "Corteza suprarrenal",
         target: "Riñones",
         type: "Esteroidea",
-        function: "Favorece la retención de sodio y agua."
+        function: "Favorece la retención de sodio y agua y la eliminación de potasio.",
+        axis: "Sistema renina-angiotensina-aldosterona"
     },
 
     {
@@ -205,7 +256,8 @@ const hormones = [
         origin: "Corteza suprarrenal",
         target: "Tejidos periféricos",
         type: "Esteroidea",
-        function: "Contribuyen a características sexuales y metabolismo."
+        function: "Contribuyen a características sexuales y metabolismo.",
+        axis: "Función suprarrenal"
     },
 
     {
@@ -214,7 +266,8 @@ const hormones = [
         origin: "Médula suprarrenal",
         target: "Corazón / Vasos / Pulmones",
         type: "Catecolamina",
-        function: "Respuesta rápida de lucha o huida."
+        function: "Participa en la respuesta rápida de lucha o huida.",
+        axis: "Sistema simpático-adrenal"
     },
 
     {
@@ -223,8 +276,14 @@ const hormones = [
         origin: "Médula suprarrenal",
         target: "Vasos sanguíneos y corazón",
         type: "Catecolamina",
-        function: "Aumenta presión arterial y respuesta simpática."
+        function: "Aumenta la respuesta simpática y contribuye al aumento de la presión arterial.",
+        axis: "Sistema simpático-adrenal"
     },
+
+
+    /* =========================
+       PÁNCREAS
+       ========================= */
 
     {
         name: "Insulina",
@@ -232,7 +291,8 @@ const hormones = [
         origin: "Páncreas",
         target: "Hígado / Músculo / Tejido adiposo",
         type: "Peptídica",
-        function: "Disminuye la glucosa sanguínea."
+        function: "Disminuye la concentración de glucosa sanguínea.",
+        axis: "Regulación de glucosa"
     },
 
     {
@@ -241,16 +301,18 @@ const hormones = [
         origin: "Páncreas",
         target: "Hígado",
         type: "Peptídica",
-        function: "Aumenta la glucosa sanguínea."
+        function: "Aumenta la concentración de glucosa sanguínea.",
+        axis: "Regulación de glucosa"
     },
 
     {
         name: "Somatostatina pancreática",
-        fullName: "Somatostatina",
+        fullName: "Somatostatina pancreática",
         origin: "Páncreas",
         target: "Páncreas y tubo digestivo",
         type: "Peptídica",
-        function: "Modula la secreción de insulina y glucagón."
+        function: "Modula la secreción de insulina y glucagón.",
+        axis: "Regulación de glucosa"
     },
 
     {
@@ -259,8 +321,14 @@ const hormones = [
         origin: "Páncreas",
         target: "Tubo digestivo",
         type: "Peptídica",
-        function: "Participa en la regulación de secreciones pancreáticas."
+        function: "Participa en la regulación de secreciones pancreáticas.",
+        axis: "Regulación gastrointestinal"
     },
+
+
+    /* =========================
+       PINEAL
+       ========================= */
 
     {
         name: "Melatonina",
@@ -268,8 +336,14 @@ const hormones = [
         origin: "Glándula pineal",
         target: "Sistema nervioso central",
         type: "Indolamina",
-        function: "Regula ritmos circadianos y sueño."
+        function: "Regula los ritmos circadianos y participa en la regulación del sueño.",
+        axis: "Ritmo circadiano"
     },
+
+
+    /* =========================
+       GÓNADAS
+       ========================= */
 
     {
         name: "Estrógenos",
@@ -277,7 +351,8 @@ const hormones = [
         origin: "Ovarios",
         target: "Útero / Mama / Hueso",
         type: "Esteroidea",
-        function: "Participan en desarrollo sexual y reproducción."
+        function: "Participan en el desarrollo sexual, reproducción y mantenimiento óseo.",
+        axis: "Eje hipotálamo-hipófisis-gónadas"
     },
 
     {
@@ -286,7 +361,8 @@ const hormones = [
         origin: "Ovarios",
         target: "Útero / Mama",
         type: "Esteroidea",
-        function: "Prepara y mantiene el endometrio."
+        function: "Prepara y mantiene el endometrio y participa en la función mamaria.",
+        axis: "Eje hipotálamo-hipófisis-gónadas"
     },
 
     {
@@ -295,7 +371,8 @@ const hormones = [
         origin: "Ovarios / Testículos",
         target: "Adenohipófisis",
         type: "Proteica",
-        function: "Inhibe principalmente la secreción de FSH."
+        function: "Inhibe principalmente la secreción de FSH.",
+        axis: "Eje hipotálamo-hipófisis-gónadas"
     },
 
     {
@@ -304,7 +381,8 @@ const hormones = [
         origin: "Testículos",
         target: "Tejidos sexuales",
         type: "Esteroidea",
-        function: "Desarrollo sexual masculino y espermatogénesis."
+        function: "Participa en el desarrollo sexual masculino y la espermatogénesis.",
+        axis: "Eje hipotálamo-hipófisis-gónadas"
     },
 
     {
@@ -313,8 +391,14 @@ const hormones = [
         origin: "Testículos / Ovarios",
         target: "Tejidos reproductivos",
         type: "Proteica",
-        function: "Participa en diferenciación sexual y función ovárica."
+        function: "Participa en la diferenciación sexual y función ovárica.",
+        axis: "Eje reproductivo"
     },
+
+
+    /* =========================
+       RIÑÓN
+       ========================= */
 
     {
         name: "Eritropoyetina",
@@ -322,7 +406,8 @@ const hormones = [
         origin: "Riñón",
         target: "Médula ósea",
         type: "Glucoproteína",
-        function: "Estimula la producción de eritrocitos."
+        function: "Estimula la producción de eritrocitos.",
+        axis: "Eritropoyesis"
     },
 
     {
@@ -331,7 +416,8 @@ const hormones = [
         origin: "Riñón",
         target: "Sistema renina-angiotensina",
         type: "Enzima hormonal",
-        function: "Inicia el sistema renina-angiotensina-aldosterona."
+        function: "Inicia el sistema renina-angiotensina-aldosterona.",
+        axis: "Sistema renina-angiotensina-aldosterona"
     },
 
     {
@@ -340,8 +426,14 @@ const hormones = [
         origin: "Riñón",
         target: "Intestino / Hueso / Riñón",
         type: "Hormona esteroidea",
-        function: "Aumenta la absorción intestinal de calcio y fosfato."
+        function: "Aumenta la absorción intestinal de calcio y fosfato.",
+        axis: "Homeostasis del calcio"
     },
+
+
+    /* =========================
+       TUBO DIGESTIVO
+       ========================= */
 
     {
         name: "Gastrina",
@@ -349,7 +441,8 @@ const hormones = [
         origin: "Estómago",
         target: "Estómago",
         type: "Peptídica",
-        function: "Estimula la secreción de ácido gástrico."
+        function: "Estimula la secreción de ácido gástrico.",
+        axis: "Regulación gastrointestinal"
     },
 
     {
@@ -358,7 +451,8 @@ const hormones = [
         origin: "Duodeno",
         target: "Páncreas",
         type: "Peptídica",
-        function: "Estimula la secreción de bicarbonato pancreático."
+        function: "Estimula la secreción de bicarbonato pancreático.",
+        axis: "Regulación gastrointestinal"
     },
 
     {
@@ -367,7 +461,8 @@ const hormones = [
         origin: "Duodeno",
         target: "Vesícula biliar / Páncreas",
         type: "Peptídica",
-        function: "Estimula contracción de la vesícula y secreción pancreática."
+        function: "Estimula la contracción de la vesícula biliar y la secreción pancreática.",
+        axis: "Regulación gastrointestinal"
     },
 
     {
@@ -376,8 +471,14 @@ const hormones = [
         origin: "Estómago",
         target: "Hipotálamo / Adenohipófisis",
         type: "Peptídica",
-        function: "Estimula el apetito y favorece secreción de GH."
+        function: "Estimula el apetito y favorece la secreción de GH.",
+        axis: "Regulación energética"
     },
+
+
+    /* =========================
+       TEJIDO ADIPOSO
+       ========================= */
 
     {
         name: "Leptina",
@@ -385,17 +486,29 @@ const hormones = [
         origin: "Tejido adiposo",
         target: "Hipotálamo",
         type: "Proteica",
-        function: "Participa en regulación del apetito y balance energético."
+        function: "Participa en la regulación del apetito y del balance energético.",
+        axis: "Regulación energética"
     },
+
+
+    /* =========================
+       HÍGADO
+       ========================= */
 
     {
         name: "IGF-1",
-        fullName: "Factor de crecimiento similar a la insulina 1",
+        fullName: "Factor de crecimiento similar a la insulina tipo 1",
         origin: "Hígado",
         target: "Huesos y tejidos",
         type: "Factor de crecimiento",
-        function: "Media muchos efectos del crecimiento inducidos por GH."
+        function: "Media muchos de los efectos del crecimiento inducidos por GH.",
+        axis: "Eje GH-IGF-1"
     },
+
+
+    /* =========================
+       PLACENTA
+       ========================= */
 
     {
         name: "HCG",
@@ -403,27 +516,30 @@ const hormones = [
         origin: "Placenta",
         target: "Ovario",
         type: "Glucoproteína",
-        function: "Mantiene el cuerpo lúteo durante el embarazo."
+        function: "Mantiene el cuerpo lúteo durante el embarazo.",
+        axis: "Embarazo"
     }
 
 ];
 
 
 /* =========================================================
-   VARIABLES
+   VARIABLES PRINCIPALES
    ========================================================= */
 
 let currentIndex = 0;
 let playing = false;
 let interval = null;
 let animationFrame = null;
+let feedbackAnimationFrame = null;
 
 
 /* =========================================================
-   ELEMENTOS DOM
+   ELEMENTOS DEL DOM
    ========================================================= */
 
 const hormoneList = document.getElementById("hormoneList");
+
 const hormoneName = document.getElementById("hormoneName");
 const hormoneOrigin = document.getElementById("hormoneOrigin");
 const hormoneTarget = document.getElementById("hormoneTarget");
@@ -438,290 +554,30 @@ const progressText = document.getElementById("progressText");
 
 const searchInput = document.getElementById("searchInput");
 
-const route = document.getElementById("hormoneRoute");
-const particle = document.getElementById("routeParticle");
-const humanBody = document.getElementById("humanBody");
-
-const feedbackRoute = document.getElementById("feedbackRoute");
-const routeSvg = document.getElementById("routeSvg");
-
-
-/* =========================================================
-   TOTAL DE HORMONAS
-   ========================================================= */
-
-if (totalHormones) {
-    totalHormones.textContent = hormones.length;
-}
-
-
-/* =========================================================
-   NORMALIZAR TEXTO
-   ========================================================= */
-
-function normalizeText(text) {
-
-    if (!text) return "";
-
-    return text
-        .toString()
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .trim();
-}
-
-
-/* =========================================================
-   CREAR LISTA DE HORMONAS
-   ========================================================= */
-
-function renderHormoneList() {
-
-    if (!hormoneList) return;
-
-    hormoneList.innerHTML = "";
-
-    hormones.forEach((hormone, index) => {
-
-        const item = document.createElement("div");
-
-        item.className = "hormone-item";
-        item.textContent = `${index + 1}. ${hormone.name}`;
-        item.dataset.index = index;
-
-        item.addEventListener("click", () => {
-
-            currentIndex = index;
-
-            showHormone();
-
-        });
-
-        hormoneList.appendChild(item);
-
-    });
-}
-
-
-/* =========================================================
-   MOSTRAR HORMONA
-   ========================================================= */
-
-function showHormone() {
-
-    const hormone = hormones[currentIndex];
-
-    if (!hormone) return;
-
-
-    if (hormoneName) {
-        hormoneName.textContent = hormone.name;
-    }
-
-    if (hormoneOrigin) {
-        hormoneOrigin.textContent =
-            `${hormone.fullName} · ${hormone.origin}`;
-    }
-
-    if (hormoneTarget) {
-        hormoneTarget.textContent = hormone.target;
-    }
-
-    if (hormoneFunction) {
-        hormoneFunction.textContent = hormone.function;
-    }
-
-    if (hormoneType) {
-        hormoneType.textContent = hormone.type;
-    }
-
-    if (currentHormone) {
-        currentHormone.textContent = currentIndex + 1;
-    }
-
-    if (progressText) {
-        progressText.textContent =
-            `${currentIndex + 1} / ${hormones.length}`;
-    }
-
-    if (progressBar) {
-        progressBar.style.width =
-            `${((currentIndex + 1) / hormones.length) * 100}%`;
-    }
-
-
-    updateActiveItem();
-
-    highlightOrgans(hormone);
-
-    animateRoute(hormone);
-}
-
-
-/* =========================================================
-   ELEMENTO ACTIVO
-   ========================================================= */
-
-function updateActiveItem() {
-
-    document.querySelectorAll(".hormone-item").forEach(item => {
-
-        item.classList.remove("active");
-
-    });
-
-
-    const active = document.querySelector(
-        `.hormone-item[data-index="${currentIndex}"]`
-    );
-
-
-    if (active) {
-
-        active.classList.add("active");
-
-        active.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest"
-        });
-
-    }
-}
-
-
-/* =========================================================
-   BUSCADOR
-   ========================================================= */
-
-if (searchInput) {
-
-    searchInput.addEventListener("input", () => {
-
-        const query = normalizeText(searchInput.value);
-
-        document.querySelectorAll(".hormone-item").forEach(item => {
-
-            const text = normalizeText(item.textContent);
-
-            item.style.display =
-                text.includes(query) ? "block" : "none";
-
-        });
-
-    });
-
-}
-
-
-/* =========================================================
-   SIGUIENTE
-   ========================================================= */
-
-function nextHormone() {
-
-    currentIndex++;
-
-    if (currentIndex >= hormones.length) {
-        currentIndex = 0;
-    }
-
-    showHormone();
-}
-
-
-/* =========================================================
-   ANTERIOR
-   ========================================================= */
-
-function previousHormone() {
-
-    currentIndex--;
-
-    if (currentIndex < 0) {
-        currentIndex = hormones.length - 1;
-    }
-
-    showHormone();
-}
-
-
-/* =========================================================
-   PLAY
-   ========================================================= */
-
-function playAnimation() {
-
-    if (playing) return;
-
-    playing = true;
-
-    interval = setInterval(() => {
-
-        nextHormone();
-
-    }, 3500);
-}
-
-
-/* =========================================================
-   PAUSE
-   ========================================================= */
-
-function pauseAnimation() {
-
-    playing = false;
-
-    clearInterval(interval);
-
-    interval = null;
-}
-
-
-/* =========================================================
-   BOTONES
-   ========================================================= */
-
-const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("prevBtn");
 const playBtn = document.getElementById("playBtn");
 const pauseBtn = document.getElementById("pauseBtn");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
 
+const humanBody = document.getElementById("humanBody");
+const routeSvg = document.getElementById("routeSvg");
 
-if (nextBtn) {
-    nextBtn.addEventListener("click", nextHormone);
-}
+const hormoneRoute = document.getElementById("hormoneRoute");
+const feedbackRoute = document.getElementById("feedbackRoute");
 
-if (prevBtn) {
-    prevBtn.addEventListener("click", previousHormone);
-}
-
-if (playBtn) {
-    playBtn.addEventListener("click", playAnimation);
-}
-
-if (pauseBtn) {
-    pauseBtn.addEventListener("click", pauseAnimation);
-}
+const routeParticle = document.getElementById("routeParticle");
 
 
 /* =========================================================
-   OBTENER TODOS LOS NOMBRES DE UN TARGET
+   CONFIGURACIÓN
    ========================================================= */
 
-function getTargetNames(target) {
-
-    if (!target) return [];
-
-    const normalized = normalizeText(target);
-
-    const names = normalized
-        .split(/\s*\/\s*|\s+y\s+|\s*,\s*|\s+\/\s+/)
-        .map(x => x.trim())
-        .filter(Boolean);
-
-    return names;
-}
+const COLORS = {
+    origin: "#ff304f",
+    hormone: "#ffe600",
+    target: "#ffffff",
+    feedback: "#00f6ff"
+};
 
 
 /* =========================================================
@@ -730,29 +586,21 @@ function getTargetNames(target) {
 
 const organAliases = {
 
-    "adenohipofisis": [
+    "hipotálamo": [
+        "hipotalamo"
+    ],
+
+    "adenohipófisis": [
         "adenohipofisis",
         "hipofisis"
     ],
 
-    "neurohipofisis": [
+    "neurohipófisis": [
         "neurohipofisis",
         "hipofisis"
     ],
 
-    "hipofisis": [
-        "hipofisis"
-    ],
-
-    "hipotalamo": [
-        "hipotalamo"
-    ],
-
-    "glandula pineal": [
-        "pineal"
-    ],
-
-    "pineal": [
+    "glándula pineal": [
         "pineal"
     ],
 
@@ -765,36 +613,29 @@ const organAliases = {
     ],
 
     "corteza suprarrenal": [
-        "corteza suprarrenal",
-        "suprarrenal"
+        "suprarrenal",
+        "corteza"
     ],
 
-    "medula suprarrenal": [
+    "médula suprarrenal": [
         "medula suprarrenal",
-        "suprarrenal"
+        "medula"
     ],
 
-    "suprarrenal": [
-        "suprarrenal"
-    ],
-
-    "pancreas": [
+    "páncreas": [
         "pancreas"
     ],
 
-    "higado": [
+    "hígado": [
         "higado"
     ],
 
-    "rinones": [
-        "rinon"
+    "riñón": [
+        "rinon",
+        "riñones"
     ],
 
-    "rinon": [
-        "rinon"
-    ],
-
-    "estomago": [
+    "estómago": [
         "estomago"
     ],
 
@@ -806,24 +647,13 @@ const organAliases = {
         "ovario"
     ],
 
-    "ovario": [
-        "ovario"
-    ],
-
-    "testiculos": [
-        "testiculo"
-    ],
-
-    "testiculo": [
-        "testiculo"
+    "testículos": [
+        "testiculo",
+        "testículos"
     ],
 
     "tejido adiposo": [
-        "tejido adiposo"
-    ],
-
-    "adiposo": [
-        "tejido adiposo"
+        "adiposo"
     ],
 
     "placenta": [
@@ -832,125 +662,151 @@ const organAliases = {
 
     "timo": [
         "timo"
-    ],
-
-    "hueso": [
-        "hueso"
-    ],
-
-    "huesos": [
-        "hueso"
-    ],
-
-    "musculo": [
-        "musculo"
-    ],
-
-    "corazon": [
-        "corazon"
-    ],
-
-    "vasos": [
-        "vasos"
-    ],
-
-    "pulmones": [
-        "pulmon"
-    ],
-
-    "utero": [
-        "utero"
-    ],
-
-    "mama": [
-        "mama",
-        "glandula mamaria"
     ]
-
 };
 
 
 /* =========================================================
-   OBTENER ÓRGANOS DEL DOM
+   NORMALIZAR TEXTO
    ========================================================= */
 
-function getAllOrganElements() {
+function normalizeText(text) {
 
-    return Array.from(
-        document.querySelectorAll(".organ")
-    );
+    return String(text || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
 
 }
 
 
 /* =========================================================
-   ENCONTRAR ÓRGANO
+   GENERAR LISTA
+   ========================================================= */
+
+function renderHormoneList(filter = "") {
+
+    hormoneList.innerHTML = "";
+
+    const query = normalizeText(filter);
+
+    hormones.forEach((hormone, index) => {
+
+        const searchable = normalizeText(
+            [
+                hormone.name,
+                hormone.fullName,
+                hormone.origin,
+                hormone.target,
+                hormone.function,
+                hormone.axis,
+                hormone.type
+            ].join(" ")
+        );
+
+        if (query && !searchable.includes(query)) {
+            return;
+        }
+
+        const item = document.createElement("button");
+
+        item.className = "hormone-item";
+
+        item.dataset.index = index;
+
+        item.innerHTML = `
+            <strong>${hormone.name}</strong>
+            <br>
+            <span>${hormone.fullName}</span>
+        `;
+
+        if (index === currentIndex) {
+            item.classList.add("active");
+        }
+
+        item.addEventListener("click", () => {
+
+            currentIndex = index;
+
+            showHormone(currentIndex);
+
+            stopPlayback();
+
+        });
+
+        hormoneList.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================================================
+   BUSCAR ELEMENTOS REALES
    ========================================================= */
 
 function findOrganElement(name) {
 
-    if (!name) return null;
+    if (!name) {
+        return null;
+    }
 
     const normalized = normalizeText(name);
 
-    const organs = getAllOrganElements();
+    const allOrgans = [
+        ...humanBody.querySelectorAll(".organ")
+    ];
 
+    /* Coincidencia exacta */
 
-    /* ---------------------------------------------
-       1. COINCIDENCIA EXACTA EN data-organ
-       --------------------------------------------- */
+    for (const organ of allOrgans) {
 
-    for (const organ of organs) {
+        const dataName = normalizeText(
+            organ.dataset.organ
+        );
 
-        const organName =
-            normalizeText(organ.dataset.organ);
-
-        if (organName === normalized) {
-
+        if (dataName === normalized) {
             return organ;
-
         }
 
     }
 
 
-    /* ---------------------------------------------
-       2. ALIAS
-       --------------------------------------------- */
+    /* Alias */
 
     for (const key in organAliases) {
 
-        const keyNormalized =
-            normalizeText(key);
+        const aliases = organAliases[key];
+
+        const normalizedKey = normalizeText(key);
 
         if (
-            normalized === keyNormalized ||
-            normalized.includes(keyNormalized) ||
-            keyNormalized.includes(normalized)
+            normalized === normalizedKey ||
+            aliases.some(
+                alias => normalizeText(alias) === normalized
+            )
         ) {
 
-            const aliases =
-                organAliases[key];
+            for (const organ of allOrgans) {
 
-            for (const alias of aliases) {
+                const dataName = normalizeText(
+                    organ.dataset.organ
+                );
 
-                const aliasNormalized =
-                    normalizeText(alias);
-
-                for (const organ of organs) {
-
-                    const organName =
-                        normalizeText(organ.dataset.organ);
-
-                    if (
-                        organName.includes(aliasNormalized) ||
-                        aliasNormalized.includes(organName)
-                    ) {
-
-                        return organ;
-
-                    }
-
+                if (
+                    dataName === normalizedKey ||
+                    normalizeText(
+                        organ.dataset.adenohypophysis
+                    ) === normalized ||
+                    normalizeText(
+                        organ.dataset.neurohypophysis
+                    ) === normalized ||
+                    normalizeText(
+                        organ.dataset.medulla
+                    ) === normalized
+                ) {
+                    return organ;
                 }
 
             }
@@ -960,251 +816,324 @@ function findOrganElement(name) {
     }
 
 
-    /* ---------------------------------------------
-       3. data-adenohypophysis
-       --------------------------------------------- */
+    /* Adenohipófisis */
 
-    for (const organ of organs) {
+    for (const organ of allOrgans) {
 
-        const adeno =
+        if (
             normalizeText(
                 organ.dataset.adenohypophysis
-            );
-
-        if (
-            adeno &&
-            (
-                normalized.includes(adeno) ||
-                adeno.includes(normalized)
-            )
+            ) === normalized
         ) {
-
             return organ;
-
         }
 
     }
 
 
-    /* ---------------------------------------------
-       4. data-neurohypophysis
-       --------------------------------------------- */
+    /* Neurohipófisis */
 
-    for (const organ of organs) {
+    for (const organ of allOrgans) {
 
-        const neuro =
+        if (
             normalizeText(
                 organ.dataset.neurohypophysis
-            );
-
-        if (
-            neuro &&
-            (
-                normalized.includes(neuro) ||
-                neuro.includes(normalized)
-            )
+            ) === normalized
         ) {
-
             return organ;
-
         }
 
     }
 
 
-    /* ---------------------------------------------
-       5. data-medulla
-       --------------------------------------------- */
+    /* Médula suprarrenal */
 
-    for (const organ of organs) {
+    for (const organ of allOrgans) {
 
-        const medulla =
+        if (
             normalizeText(
                 organ.dataset.medulla
-            );
-
-        if (
-            medulla &&
-            (
-                normalized.includes(medulla) ||
-                medulla.includes(normalized)
-            )
+            ) === normalized
         ) {
-
             return organ;
-
         }
 
     }
 
 
-    /* ---------------------------------------------
-       6. COINCIDENCIA PARCIAL
-       --------------------------------------------- */
+    /* Coincidencia parcial */
 
-    for (const organ of organs) {
+    for (const organ of allOrgans) {
 
-        const organName =
-            normalizeText(organ.dataset.organ);
-
-        if (!organName) continue;
+        const dataName = normalizeText(
+            organ.dataset.organ
+        );
 
         if (
-            normalized.includes(organName) ||
-            organName.includes(normalized)
+            dataName.includes(normalized) ||
+            normalized.includes(dataName)
         ) {
-
             return organ;
-
         }
 
     }
-
-
-    /* ---------------------------------------------
-       IMPORTANTE:
-       NO HACEMOS FALLBACK AL HIPOTÁLAMO
-       --------------------------------------------- */
 
     return null;
 }
 
 
 /* =========================================================
-   ENCONTRAR TODOS LOS ÓRGANOS POSIBLES
+   DIANAS VIRTUALES
+   =========================================================
+   Estas NO modifican las coordenadas de tus órganos.
+   Se utilizan para estructuras que todavía no tienen
+   un botón propio en el HTML.
    ========================================================= */
 
-function findAllOrganElements(target) {
+const virtualTargetPositions = {
 
-    if (!target) return [];
+    "hueso": {
+        top: 38,
+        left: 39
+    },
 
-    const normalized = normalizeText(target);
+    "huesos y tejidos": {
+        top: 43,
+        left: 61
+    },
 
-    const found = [];
+    "músculo": {
+        top: 60,
+        left: 38
+    },
 
-    const targetNames = getTargetNames(target);
+    "músculo / tejido adiposo": {
+        top: 58,
+        left: 42
+    },
+
+    "corazón": {
+        top: 35,
+        left: 47
+    },
+
+    "vasos": {
+        top: 40,
+        left: 58
+    },
+
+    "vasos sanguíneos y corazón": {
+        top: 40,
+        left: 55
+    },
+
+    "pulmones": {
+        top: 33,
+        left: 42
+    },
+
+    "útero": {
+        top: 63,
+        left: 50
+    },
+
+    "glándula mamaria": {
+        top: 36,
+        left: 50
+    },
+
+    "mama": {
+        top: 36,
+        left: 50
+    },
+
+    "melanocitos": {
+        top: 28,
+        left: 30
+    },
+
+    "médula ósea": {
+        top: 70,
+        left: 52
+    },
+
+    "sistema nervioso central": {
+        top: 12,
+        left: 50
+    },
+
+    "sistema renina-angiotensina": {
+        top: 49,
+        left: 50
+    },
+
+    "intestino": {
+        top: 58,
+        left: 52
+    },
+
+    "vesícula biliar": {
+        top: 48,
+        left: 61
+    },
+
+    "tubo digestivo": {
+        top: 57,
+        left: 53
+    },
+
+    "tejidos corporales": {
+        top: 45,
+        left: 35
+    },
+
+    "múltiples tejidos": {
+        top: 45,
+        left: 65
+    },
+
+    "tejidos periféricos": {
+        top: 55,
+        left: 35
+    },
+
+    "tejidos sexuales": {
+        top: 70,
+        left: 55
+    },
+
+    "tejidos reproductivos": {
+        top: 67,
+        left: 50
+    },
+
+    "hígado y tejidos": {
+        top: 45,
+        left: 58
+    },
+
+    "páncreas y tubo digestivo": {
+        top: 54,
+        left: 53
+    },
+
+    "ovario": {
+        top: 66,
+        left: 50
+    },
+
+    "sistema nervioso": {
+        top: 15,
+        left: 50
+    }
+
+};
 
 
-    /* ---------------------------------------------
-       SI EL TARGET CONTIENE /
-       --------------------------------------------- */
+/* =========================================================
+   CREAR DIANA VIRTUAL
+   ========================================================= */
 
-    targetNames.forEach(name => {
+function createVirtualTarget(name) {
 
-        const organ = findOrganElement(name);
+    const normalized = normalizeText(name);
 
-        if (organ && !found.includes(organ)) {
+    let key = Object.keys(
+        virtualTargetPositions
+    ).find(
+        k => normalizeText(k) === normalized
+    );
 
-            found.push(organ);
+    if (!key) {
 
-        }
-
-    });
-
-
-    /* ---------------------------------------------
-       CASOS ESPECIALES
-       --------------------------------------------- */
-
-    if (
-        normalized.includes("ovarios") ||
-        normalized.includes("testiculos")
-    ) {
-
-        const ovarios =
-            findOrganElement("ovarios");
-
-        const testiculos =
-            findOrganElement("testiculos");
-
-        if (
-            ovarios &&
-            !found.includes(ovarios)
-        ) {
-            found.push(ovarios);
-        }
-
-        if (
-            testiculos &&
-            !found.includes(testiculos)
-        ) {
-            found.push(testiculos);
-        }
+        key = Object.keys(
+            virtualTargetPositions
+        ).find(
+            k =>
+                normalized.includes(normalizeText(k)) ||
+                normalizeText(k).includes(normalized)
+        );
 
     }
 
+    if (!key) {
+        return null;
+    }
 
-    return found;
+    const existing = humanBody.querySelector(
+        `.virtual-target[data-target="${CSS.escape(key)}"]`
+    );
+
+    if (existing) {
+        return existing;
+    }
+
+    const position = virtualTargetPositions[key];
+
+    const point = document.createElement("div");
+
+    point.className = "virtual-target";
+
+    point.dataset.target = key;
+
+    point.style.top = `${position.top}%`;
+    point.style.left = `${position.left}%`;
+
+    point.title = key.toUpperCase();
+
+    humanBody.appendChild(point);
+
+    return point;
 }
 
 
 /* =========================================================
-   RESALTAR ÓRGANOS
+   BUSCAR TODAS LAS DIANAS
    ========================================================= */
 
-function highlightOrgans(hormone) {
+function findAllTargetElements(targetText) {
 
-    document
-        .querySelectorAll(".organ")
-        .forEach(organ => {
+    if (!targetText) {
+        return [];
+    }
 
-            organ.classList.remove(
-                "origin",
-                "target"
-            );
+    const parts = targetText
+        .split("/")
+        .map(x => x.trim())
+        .filter(Boolean);
 
-        });
+    const result = [];
 
+    parts.forEach(part => {
 
-    const originElements =
-        findAllOrganElements(hormone.origin);
+        const real = findOrganElement(part);
 
-    const targetElements =
-        findAllOrganElements(hormone.target);
+        if (real) {
 
+            result.push(real);
 
-    /* ---------------------------------------------
-       ORIGEN = ROJO
-       --------------------------------------------- */
+            return;
+        }
 
-    originElements.forEach(organ => {
+        const virtual = createVirtualTarget(part);
 
-        organ.classList.add("origin");
-
-    });
-
-
-    /* ---------------------------------------------
-       DESTINO = BLANCO
-       --------------------------------------------- */
-
-    targetElements.forEach(organ => {
-
-        if (originElements.includes(organ)) {
-
-            organ.classList.add(
-                "origin",
-                "target"
-            );
-
-        } else {
-
-            organ.classList.add("target");
-
+        if (virtual) {
+            result.push(virtual);
         }
 
     });
 
+    return result;
 }
 
 
 /* =========================================================
-   COORDENADAS DE UN ELEMENTO
+   CENTRO DE ELEMENTO
    ========================================================= */
 
 function getElementCenter(element) {
 
-    if (!element || !humanBody) {
+    if (!element) {
         return null;
     }
 
@@ -1213,7 +1142,6 @@ function getElementCenter(element) {
 
     const rect =
         element.getBoundingClientRect();
-
 
     return {
 
@@ -1233,31 +1161,41 @@ function getElementCenter(element) {
 
 
 /* =========================================================
-   CONVERTIR COORDENADA AL VIEWBOX
+   CONVERTIR COORDENADAS A SVG
    ========================================================= */
 
 function bodyPointToSvg(point) {
 
-    if (!routeSvg || !humanBody || !point) {
-        return null;
-    }
-
     const bodyRect =
         humanBody.getBoundingClientRect();
+
+    const svgRect =
+        routeSvg.getBoundingClientRect();
 
     const viewBox =
         routeSvg.viewBox.baseVal;
 
-
     return {
 
         x:
-            (point.x / bodyRect.width) *
-            viewBox.width,
+            (
+                point.x +
+                bodyRect.left -
+                svgRect.left
+            )
+            *
+            viewBox.width /
+            svgRect.width,
 
         y:
-            (point.y / bodyRect.height) *
-            viewBox.height
+            (
+                point.y +
+                bodyRect.top -
+                svgRect.top
+            )
+            *
+            viewBox.height /
+            svgRect.height
 
     };
 
@@ -1265,515 +1203,1344 @@ function bodyPointToSvg(point) {
 
 
 /* =========================================================
-   CREAR CURVA ENTRE DOS PUNTOS
+   CREAR CURVA
    ========================================================= */
 
 function createPath(start, end) {
 
-    if (!start || !end) return "";
+    const dx = end.x - start.x;
+    const dy = end.y - start.y;
 
-
-    const dx =
-        end.x - start.x;
-
-    const dy =
-        end.y - start.y;
-
-
-    /* ---------------------------------------------
-       MISMO PUNTO
-       --------------------------------------------- */
-
-    if (
-        Math.abs(dx) < 4 &&
-        Math.abs(dy) < 4
-    ) {
-
-        return `
-            M ${start.x} ${start.y}
-
-            C
-            ${start.x - 35} ${start.y - 45},
-            ${start.x + 35} ${start.y - 45},
-            ${start.x} ${start.y}
-        `;
-
-    }
-
-
-    /* ---------------------------------------------
-       CURVA VERTICAL
-       --------------------------------------------- */
-
-    if (Math.abs(dy) >= Math.abs(dx)) {
-
-        const curve =
-            Math.min(
-                Math.max(
-                    Math.abs(dy) * 0.30,
-                    25
-                ),
-                120
-            );
-
-
-        return `
-            M ${start.x} ${start.y}
-
-            C
-            ${start.x} ${start.y + curve},
-            ${end.x} ${end.y - curve},
-            ${end.x} ${end.y}
-        `;
-
-    }
-
-
-    /* ---------------------------------------------
-       CURVA HORIZONTAL
-       --------------------------------------------- */
-
-    const curve =
-        Math.min(
-            Math.max(
-                Math.abs(dx) * 0.30,
-                25
-            ),
-            120
-        );
-
+    const curve = Math.max(
+        45,
+        Math.abs(dy) * 0.35
+    );
 
     return `
         M ${start.x} ${start.y}
-
         C
-        ${start.x + (dx > 0 ? curve : -curve)} ${start.y},
-        ${end.x - (dx > 0 ? curve : -curve)} ${end.y},
-        ${end.x} ${end.y}
+        ${start.x + dx * 0.20}
+        ${start.y + curve}
+
+        ${end.x - dx * 0.20}
+        ${end.y - curve}
+
+        ${end.x}
+        ${end.y}
     `;
+
 }
 
 
 /* =========================================================
-   ANIMAR PARTÍCULA SOBRE LA RUTA
+   RESALTAR ÓRGANOS
    ========================================================= */
 
-function animateParticle(path) {
+function highlightOrgans(hormone) {
 
-    if (!particle || !path) return;
-
-
-    if (animationFrame) {
-
-        cancelAnimationFrame(
-            animationFrame
+    const allOrgans =
+        humanBody.querySelectorAll(
+            ".organ, .virtual-target"
         );
 
-        animationFrame = null;
+    allOrgans.forEach(element => {
 
+        element.classList.remove(
+            "origin",
+            "target",
+            "active",
+            "hormone-active"
+        );
+
+    });
+
+
+    /* ORIGEN */
+
+    const origins =
+        findAllTargetElements(
+            hormone.origin
+        );
+
+    origins.forEach(element => {
+
+        element.classList.add(
+            "origin",
+            "active"
+        );
+
+    });
+
+
+    /* DIANAS */
+
+    const targets =
+        findAllTargetElements(
+            hormone.target
+        );
+
+    targets.forEach(element => {
+
+        element.classList.add(
+            "target",
+            "active"
+        );
+
+    });
+
+
+    /* Si un elemento es ambos */
+
+    origins.forEach(origin => {
+
+        targets.forEach(target => {
+
+            if (origin === target) {
+
+                origin.classList.add(
+                    "origin",
+                    "target"
+                );
+
+            }
+
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   CREAR RUTA HORMONAL
+   ========================================================= */
+
+function buildHormoneRoute(hormone) {
+
+    const origin =
+        findOrganElement(
+            hormone.origin
+        );
+
+    if (!origin) {
+        return [];
     }
 
+    const originCenter =
+        getElementCenter(origin);
 
-    let length;
+    const originSvg =
+        bodyPointToSvg(originCenter);
 
-    try {
+    const targets =
+        findAllTargetElements(
+            hormone.target
+        );
 
-        length =
-            path.getTotalLength();
+    if (!targets.length) {
+        return [];
+    }
 
-    } catch (error) {
+    const paths = [];
+
+    targets.forEach(target => {
+
+        const targetCenter =
+            getElementCenter(target);
+
+        const targetSvg =
+            bodyPointToSvg(targetCenter);
+
+        paths.push(
+            createPath(
+                originSvg,
+                targetSvg
+            )
+        );
+
+    });
+
+    return paths;
+}
+
+
+/* =========================================================
+   ANIMACIÓN DE PARTÍCULA
+   ========================================================= */
+
+function animateParticle(paths) {
+
+    cancelAnimationFrame(
+        animationFrame
+    );
+
+    if (!paths.length) {
+
+        routeParticle.style.display =
+            "none";
 
         return;
 
     }
 
+    routeParticle.style.display =
+        "block";
 
-    if (!length || !isFinite(length)) {
-        return;
-    }
+    const tempPaths =
+        paths.map(d => {
 
+            const path =
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "path"
+                );
 
-    const duration = 1800;
-
-    const startTime =
-        performance.now();
-
-
-    particle.classList.add("active");
-
-
-    function moveParticle(now) {
-
-        const elapsed =
-            now - startTime;
-
-        const progress =
-            Math.min(
-                elapsed / duration,
-                1
+            path.setAttribute(
+                "d",
+                d
             );
 
+            routeSvg.appendChild(path);
+
+            return path;
+
+        });
+
+
+    let currentPath = 0;
+    let progress = 0;
+
+    function animate() {
+
+        if (
+            currentPath >=
+            tempPaths.length
+        ) {
+
+            currentPath = 0;
+            progress = 0;
+
+        }
+
+        const path =
+            tempPaths[currentPath];
+
+        const length =
+            path.getTotalLength();
 
         const point =
             path.getPointAtLength(
                 length * progress
             );
 
-
-        particle.setAttribute(
+        routeParticle.setAttribute(
             "cx",
             point.x
         );
 
-        particle.setAttribute(
+        routeParticle.setAttribute(
             "cy",
             point.y
         );
 
+        progress += 0.008;
 
-        if (progress < 1) {
+        if (progress >= 1) {
 
-            animationFrame =
-                requestAnimationFrame(
-                    moveParticle
-                );
+            progress = 0;
 
-        } else {
-
-            /* ---------------------------------
-               VOLVER A COMENZAR
-               --------------------------------- */
-
-            setTimeout(() => {
-
-                if (
-                    route &&
-                    route.classList.contains("visible")
-                ) {
-
-                    animateParticle(path);
-
-                }
-
-            }, 250);
+            currentPath++;
 
         }
 
-    }
-
-
-    animationFrame =
-        requestAnimationFrame(
-            moveParticle
-        );
-}
-
-
-/* =========================================================
-   ANIMACIÓN PRINCIPAL DE RUTA
-   ========================================================= */
-
-function animateRoute(hormone) {
-
-    if (!route || !humanBody || !routeSvg) {
-        return;
-    }
-
-
-    /* ---------------------------------------------
-       LIMPIAR ANIMACIÓN ANTERIOR
-       --------------------------------------------- */
-
-    route.classList.remove("visible");
-
-    if (particle) {
-        particle.classList.remove("active");
-    }
-
-
-    if (animationFrame) {
-
-        cancelAnimationFrame(
-            animationFrame
-        );
-
-        animationFrame = null;
-
-    }
-
-
-    /* ---------------------------------------------
-       BUSCAR ORIGEN
-       --------------------------------------------- */
-
-    const originEl =
-        findOrganElement(hormone.origin);
-
-
-    /* ---------------------------------------------
-       BUSCAR DESTINOS
-       --------------------------------------------- */
-
-    const targetEls =
-        findAllOrganElements(hormone.target);
-
-
-    /* ---------------------------------------------
-       SI NO HAY ORIGEN
-       --------------------------------------------- */
-
-    if (!originEl) {
-
-        console.warn(
-            `No se encontró el origen de ${hormone.name}:`,
-            hormone.origin
-        );
-
-        route.setAttribute("d", "");
-
-        return;
-    }
-
-
-    /* ---------------------------------------------
-       SI NO HAY DESTINO
-       --------------------------------------------- */
-
-    if (!targetEls.length) {
-
-        console.warn(
-            `No se encontró el destino de ${hormone.name}:`,
-            hormone.target
-        );
-
-        route.setAttribute("d", "");
-
-        return;
-    }
-
-
-    /* ---------------------------------------------
-       CENTRO DEL ORIGEN
-       --------------------------------------------- */
-
-    const originPoint =
-        getElementCenter(originEl);
-
-
-    const start =
-        bodyPointToSvg(originPoint);
-
-
-    if (!start) return;
-
-
-    /* =================================================
-       SI EXISTE UN SOLO DESTINO
-       ================================================= */
-
-    if (targetEls.length === 1) {
-
-        const targetPoint =
-            getElementCenter(
-                targetEls[0]
+        animationFrame =
+            requestAnimationFrame(
+                animate
             );
 
-        const end =
-            bodyPointToSvg(
-                targetPoint
-            );
-
-
-        if (!end) return;
-
-
-        const pathData =
-            createPath(
-                start,
-                end
-            );
-
-
-        route.setAttribute(
-            "d",
-            pathData
-        );
-
-
-        /* ---------------------------------------------
-           POSICIÓN INICIAL DE PARTÍCULA
-           --------------------------------------------- */
-
-        if (particle) {
-
-            particle.setAttribute(
-                "cx",
-                start.x
-            );
-
-            particle.setAttribute(
-                "cy",
-                start.y
-            );
-
-        }
-
-
-        /* ---------------------------------------------
-           MOSTRAR
-           --------------------------------------------- */
-
-        setTimeout(() => {
-
-            route.classList.add("visible");
-
-            animateParticle(route);
-
-        }, 80);
-
-
-        return;
     }
 
-
-    /* =================================================
-       MÚLTIPLES DESTINOS
-       ================================================= */
-
-    let completePath = "";
-
-    targetEls.forEach((targetEl, index) => {
-
-        const targetPoint =
-            getElementCenter(
-                targetEl
-            );
-
-        const end =
-            bodyPointToSvg(
-                targetPoint
-            );
-
-
-        if (!end) return;
-
-
-        /* -----------------------------------------
-           Primera ruta:
-           origen → primer destino
-           ----------------------------------------- */
-
-        if (index === 0) {
-
-            completePath +=
-                createPath(
-                    start,
-                    end
-                );
-
-        } else {
-
-            /* -------------------------------------
-               Las siguientes salen desde el origen
-               ------------------------------------- */
-
-            completePath +=
-                createPath(
-                    start,
-                    end
-                );
-
-        }
-
-    });
-
-
-    route.setAttribute(
-        "d",
-        completePath
-    );
-
-
-    if (particle) {
-
-        particle.setAttribute(
-            "cx",
-            start.x
-        );
-
-        particle.setAttribute(
-            "cy",
-            start.y
-        );
-
-    }
+    animate();
 
 
     setTimeout(() => {
 
-        route.classList.add("visible");
+        tempPaths.forEach(
+            path => path.remove()
+        );
 
-        animateParticle(route);
-
-    }, 80);
+    }, 3000);
 
 }
 
 
 /* =========================================================
-   CLICK DIRECTO SOBRE ÓRGANOS
+   RETROALIMENTACIÓN NEGATIVA
    ========================================================= */
 
-document
-    .querySelectorAll(".organ")
-    .forEach(organ => {
+const feedbackMap = {
+
+    "TRH": {
+        from: "Tiroides",
+        to: "Hipotálamo"
+    },
+
+    "TSH": {
+        from: "Tiroides",
+        to: "Hipotálamo"
+    },
+
+    "T3": {
+        from: "Tiroides",
+        to: "Hipotálamo"
+    },
+
+    "T4": {
+        from: "Tiroides",
+        to: "Hipotálamo"
+    },
+
+    "CRH": {
+        from: "Corteza suprarrenal",
+        to: "Hipotálamo"
+    },
+
+    "ACTH": {
+        from: "Corteza suprarrenal",
+        to: "Hipotálamo"
+    },
+
+    "Cortisol": {
+        from: "Corteza suprarrenal",
+        to: "Hipotálamo"
+    },
+
+    "GnRH": {
+        from: "Ovarios / Testículos",
+        to: "Hipotálamo"
+    },
+
+    "LH": {
+        from: "Ovarios / Testículos",
+        to: "Hipotálamo"
+    },
+
+    "FSH": {
+        from: "Ovarios / Testículos",
+        to: "Hipotálamo"
+    },
+
+    "Testosterona": {
+        from: "Testículos",
+        to: "Hipotálamo"
+    },
+
+    "Estrógenos": {
+        from: "Ovarios",
+        to: "Hipotálamo"
+    },
+
+    "Progesterona": {
+        from: "Ovarios",
+        to: "Hipotálamo"
+    },
+
+    "Inhibina": {
+        from: "Ovarios / Testículos",
+        to: "Adenohipófisis"
+    },
+
+    "GHRH": {
+        from: "Hígado",
+        to: "Hipotálamo"
+    },
+
+    "GH": {
+        from: "Hígado",
+        to: "Hipotálamo"
+    },
+
+    "IGF-1": {
+        from: "Hígado",
+        to: "Hipotálamo"
+    }
+
+};
+
+
+/* =========================================================
+   CREAR RUTA DE FEEDBACK
+   ========================================================= */
+
+function buildFeedbackRoute(hormone) {
+
+    const feedback =
+        feedbackMap[hormone.name];
+
+    if (!feedback) {
+        return "";
+    }
+
+    const from =
+        findAllTargetElements(
+            feedback.from
+        )[0];
+
+    const to =
+        findAllTargetElements(
+            feedback.to
+        )[0];
+
+    if (!from || !to) {
+        return "";
+    }
+
+    const start =
+        bodyPointToSvg(
+            getElementCenter(from)
+        );
+
+    const end =
+        bodyPointToSvg(
+            getElementCenter(to)
+        );
+
+    return createPath(
+        start,
+        end
+    );
+
+}
+
+
+/* =========================================================
+   ANIMAR RUTA
+   ========================================================= */
+
+function animateRoute(hormone) {
+
+    const paths =
+        buildHormoneRoute(
+            hormone
+        );
+
+    hormoneRoute.setAttribute(
+        "d",
+        paths.join(" ")
+    );
+
+
+    /* Feedback */
+
+    const feedbackPath =
+        buildFeedbackRoute(
+            hormone
+        );
+
+    feedbackRoute.setAttribute(
+        "d",
+        feedbackPath
+    );
+
+
+    /* Partícula */
+
+    animateParticle(paths);
+
+}
+
+
+/* =========================================================
+   INFORMACIÓN EXTRA
+   ========================================================= */
+
+function createExtraInfoPanel() {
+
+    let panel =
+        document.getElementById(
+            "hormoneExtraInfo"
+        );
+
+    if (panel) {
+        return panel;
+    }
+
+    const infoCard =
+        document.querySelector(
+            ".info-card"
+        );
+
+    if (!infoCard) {
+        return null;
+    }
+
+    panel =
+        document.createElement("div");
+
+    panel.id =
+        "hormoneExtraInfo";
+
+    panel.className =
+        "hormone-extra-info";
+
+    infoCard.appendChild(panel);
+
+    return panel;
+
+}
+
+
+/* =========================================================
+   DATOS CLÍNICOS
+   ========================================================= */
+
+const clinicalInfo = {
+
+    "TRH":
+        "Alteraciones del eje tiroideo pueden modificar TSH y hormonas tiroideas.",
+
+    "CRH":
+        "Su regulación participa en la respuesta neuroendocrina al estrés.",
+
+    "GnRH":
+        "La secreción pulsátil de GnRH es necesaria para la función reproductiva.",
+
+    "GHRH":
+        "Participa en la regulación de la secreción de GH.",
+
+    "Somatostatina":
+        "Su exceso inhibe múltiples secreciones endocrinas y gastrointestinales.",
+
+    "Dopamina":
+        "Es el principal inhibidor fisiológico de la secreción de prolactina.",
+
+    "GH":
+        "Su exceso o déficit puede producir alteraciones importantes del crecimiento.",
+
+    "TSH":
+        "Es un marcador fundamental para valorar la función del eje tiroideo.",
+
+    "ACTH":
+        "Su interpretación permite valorar la función del eje hipotálamo-hipófisis-suprarrenal.",
+
+    "FSH":
+        "Participa en la gametogénesis y es útil en la valoración de función gonadal.",
+
+    "LH":
+        "Participa en la ovulación y esteroidogénesis gonadal.",
+
+    "Prolactina":
+        "La hiperprolactinemia puede producir alteraciones reproductivas y galactorrea.",
+
+    "ADH":
+        "Alteraciones de ADH participan en diabetes insípida y síndrome de secreción inadecuada de ADH.",
+
+    "Oxitocina":
+        "Participa en el trabajo de parto y la eyección de leche.",
+
+    "T3":
+        "Es la forma tiroidea con mayor actividad biológica.",
+
+    "T4":
+        "Es la principal hormona tiroidea circulante y funciona como precursor de T3.",
+
+    "Calcitonina":
+        "Tiene un papel relativamente menor en la homeostasis del calcio en comparación con PTH.",
+
+    "PTH":
+        "Es una hormona fundamental para mantener la concentración de calcio extracelular.",
+
+    "Cortisol":
+        "Su exceso crónico puede asociarse con síndrome de Cushing.",
+
+    "Aldosterona":
+        "Su exceso puede producir hipertensión e hipopotasemia.",
+
+    "Adrenalina":
+        "Participa en la respuesta aguda al estrés y puede aumentar frecuencia cardiaca y glucemia.",
+
+    "Noradrenalina":
+        "Tiene un importante efecto vasoconstrictor y participa en la regulación de la presión arterial.",
+
+    "Insulina":
+        "Su deficiencia o resistencia tiene un papel central en la diabetes mellitus.",
+
+    "Glucagón":
+        "Es importante durante el ayuno para mantener la disponibilidad de glucosa.",
+
+    "Melatonina":
+        "Su secreción está relacionada con el ciclo luz-oscuridad.",
+
+    "Estrógenos":
+        "Participan en función reproductiva y mantenimiento de la masa ósea.",
+
+    "Progesterona":
+        "Es fundamental para la preparación y mantenimiento del endometrio.",
+
+    "Testosterona":
+        "Participa en desarrollo sexual masculino, masa muscular y espermatogénesis.",
+
+    "Eritropoyetina":
+        "Su disminución en enfermedad renal crónica puede contribuir a anemia.",
+
+    "Renina":
+        "Participa en el control de la presión arterial mediante el sistema renina-angiotensina-aldosterona.",
+
+    "Calcitriol":
+        "Es la forma activa de vitamina D y favorece la absorción intestinal de calcio y fosfato.",
+
+    "Gastrina":
+        "Participa en la regulación de la secreción de ácido gástrico.",
+
+    "Secretina":
+        "Promueve la secreción pancreática de bicarbonato.",
+
+    "Colecistoquinina":
+        "Participa en la digestión de grasas y proteínas.",
+
+    "Grelina":
+        "Es una señal periférica importante relacionada con hambre y secreción de GH.",
+
+    "Leptina":
+        "Señala al hipotálamo el estado energético asociado a las reservas adiposas.",
+
+    "IGF-1":
+        "Media gran parte de los efectos periféricos del eje GH.",
+
+    "HCG":
+        "Es fundamental durante las primeras etapas del embarazo para mantener el cuerpo lúteo."
+
+};
+
+
+/* =========================================================
+   MOSTRAR INFORMACIÓN EXTRA
+   ========================================================= */
+
+function updateExtraInfo(hormone) {
+
+    const panel =
+        createExtraInfoPanel();
+
+    if (!panel) {
+        return;
+    }
+
+    const feedback =
+        feedbackMap[hormone.name];
+
+    panel.innerHTML = `
+
+        <div class="extra-title">
+            INFORMACIÓN FISIOLÓGICA
+        </div>
+
+        <div class="extra-row">
+            <span>EJE</span>
+            <strong>
+                ${hormone.axis || "—"}
+            </strong>
+        </div>
+
+        <div class="extra-row">
+            <span>REGULACIÓN</span>
+            <strong>
+                ${
+                    feedback
+                        ? "Retroalimentación negativa"
+                        : "Regulación fisiológica"
+                }
+            </strong>
+        </div>
+
+        <div class="extra-row">
+            <span>CLÍNICA</span>
+            <strong>
+                ${
+                    clinicalInfo[hormone.name]
+                    || "Sin información clínica adicional."
+                }
+            </strong>
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   MOSTRAR HORMONA
+   ========================================================= */
+
+function showHormone(index) {
+
+    if (
+        index < 0 ||
+        index >= hormones.length
+    ) {
+        return;
+    }
+
+    currentIndex = index;
+
+    const hormone =
+        hormones[index];
+
+
+    /* Información */
+
+    hormoneName.textContent =
+        hormone.name;
+
+    hormoneOrigin.textContent =
+        hormone.origin;
+
+    hormoneTarget.textContent =
+        hormone.target;
+
+    hormoneFunction.textContent =
+        hormone.function;
+
+    hormoneType.textContent =
+        hormone.type;
+
+
+    /* Contador */
+
+    currentHormone.textContent =
+        index + 1;
+
+    totalHormones.textContent =
+        hormones.length;
+
+
+    /* Progreso */
+
+    const percentage =
+        (
+            (index + 1) /
+            hormones.length
+        ) *
+        100;
+
+    progressBar.style.width =
+        `${percentage}%`;
+
+    progressText.textContent =
+        `${index + 1} / ${hormones.length}`;
+
+
+    /* Lista */
+
+    document
+        .querySelectorAll(".hormone-item")
+        .forEach(item => {
+
+            item.classList.toggle(
+                "active",
+                Number(item.dataset.index) === index
+            );
+
+        });
+
+
+    /* Órganos */
+
+    highlightOrgans(
+        hormone
+    );
+
+
+    /* Información adicional */
+
+    updateExtraInfo(
+        hormone
+    );
+
+
+    /* Ruta */
+
+    requestAnimationFrame(() => {
+
+        animateRoute(
+            hormone
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   SIGUIENTE
+   ========================================================= */
+
+function nextHormone() {
+
+    currentIndex++;
+
+    if (
+        currentIndex >=
+        hormones.length
+    ) {
+        currentIndex = 0;
+    }
+
+    showHormone(
+        currentIndex
+    );
+
+}
+
+
+/* =========================================================
+   ANTERIOR
+   ========================================================= */
+
+function previousHormone() {
+
+    currentIndex--;
+
+    if (currentIndex < 0) {
+
+        currentIndex =
+            hormones.length - 1;
+
+    }
+
+    showHormone(
+        currentIndex
+    );
+
+}
+
+
+/* =========================================================
+   REPRODUCIR
+   ========================================================= */
+
+function startPlayback() {
+
+    if (playing) {
+        return;
+    }
+
+    playing = true;
+
+    interval =
+        setInterval(() => {
+
+            nextHormone();
+
+        }, 3500);
+
+}
+
+
+/* =========================================================
+   PAUSAR
+   ========================================================= */
+
+function stopPlayback() {
+
+    playing = false;
+
+    clearInterval(
+        interval
+    );
+
+    interval = null;
+
+}
+
+
+/* =========================================================
+   BUSCADOR
+   ========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    event => {
+
+        renderHormoneList(
+            event.target.value
+        );
+
+    }
+);
+
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+nextBtn.addEventListener(
+    "click",
+    nextHormone
+);
+
+prevBtn.addEventListener(
+    "click",
+    previousHormone
+);
+
+playBtn.addEventListener(
+    "click",
+    startPlayback
+);
+
+pauseBtn.addEventListener(
+    "click",
+    stopPlayback
+);
+
+
+/* =========================================================
+   INTERACCIÓN CON ÓRGANOS
+   ========================================================= */
+
+function setupOrganInteractions() {
+
+    const organs =
+        humanBody.querySelectorAll(
+            ".organ"
+        );
+
+    organs.forEach(organ => {
 
         organ.addEventListener(
             "click",
-            () => {
+            event => {
 
-                const organName =
-                    organ.dataset.organ || "";
+                event.stopPropagation();
 
-                const normalizedOrgan =
-                    normalizeText(
-                        organName
-                    );
+                const name =
+                    organ.dataset.organ;
 
-
-                const index =
-                    hormones.findIndex(
-                        hormone => {
-
-                            return (
+                const matches =
+                    hormones.filter(
+                        hormone =>
+                            normalizeText(
+                                hormone.origin
+                            ).includes(
+                                normalizeText(name)
+                            ) ||
+                            normalizeText(
+                                name
+                            ).includes(
                                 normalizeText(
                                     hormone.origin
-                                ).includes(
-                                    normalizedOrgan
-                                ) ||
-                                normalizedOrgan.includes(
-                                    normalizeText(
-                                        hormone.origin
-                                    )
                                 )
-                            );
-
-                        }
+                            )
                     );
 
-
-                if (index !== -1) {
-
-                    currentIndex = index;
-
-                    showHormone();
-
+                if (!matches.length) {
+                    return;
                 }
+
+                const current =
+                    hormones[currentIndex];
+
+                const currentMatch =
+                    matches.indexOf(
+                        current
+                    );
+
+                let nextMatch =
+                    currentMatch + 1;
+
+                if (
+                    nextMatch >=
+                    matches.length
+                ) {
+                    nextMatch = 0;
+                }
+
+                const selected =
+                    matches[nextMatch];
+
+                currentIndex =
+                    hormones.indexOf(
+                        selected
+                    );
+
+                showHormone(
+                    currentIndex
+                );
+
+            }
+        );
+
+
+        /* Tooltip */
+
+        organ.addEventListener(
+            "mouseenter",
+            () => {
+
+                const name =
+                    organ.dataset.organ;
+
+                const matches =
+                    hormones.filter(
+                        hormone =>
+                            normalizeText(
+                                hormone.origin
+                            ).includes(
+                                normalizeText(
+                                    name
+                                )
+                            )
+                    );
+
+                organ.dataset.info =
+                    matches.length
+                        ? `${name} · ${matches.map(h => h.name).join(", ")}`
+                        : name;
 
             }
         );
 
     });
+
+}
+
+
+/* =========================================================
+   ESTILOS DINÁMICOS
+   ========================================================= */
+
+function injectDynamicStyles() {
+
+    if (
+        document.getElementById(
+            "dynamicEndocrineStyles"
+        )
+    ) {
+        return;
+    }
+
+    const style =
+        document.createElement("style");
+
+    style.id =
+        "dynamicEndocrineStyles";
+
+    style.textContent = `
+
+        /* =====================================
+           DIANAS VIRTUALES
+           ===================================== */
+
+        .virtual-target {
+
+            position: absolute;
+
+            width: 10px;
+            height: 10px;
+
+            transform:
+                translate(-50%, -50%);
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,0.15);
+
+            border:
+                2px solid rgba(255,255,255,0.45);
+
+            box-shadow:
+                0 0 7px
+                rgba(255,255,255,0.25);
+
+            z-index: 25;
+
+            pointer-events: none;
+
+            opacity: 0;
+
+            transition:
+                0.25s ease;
+
+        }
+
+
+        .virtual-target.target {
+
+            opacity: 1;
+
+            background:
+                #ffffff;
+
+            border-color:
+                #ffffff;
+
+            box-shadow:
+                0 0 8px #ffffff,
+                0 0 18px
+                rgba(255,255,255,0.65);
+
+        }
+
+
+        /* =====================================
+           RUTA HORMONAL
+           ===================================== */
+
+        .route.hormone {
+
+            stroke:
+                #ffe600 !important;
+
+            filter:
+                url(#glow);
+
+        }
+
+
+        /* =====================================
+           FEEDBACK
+           ===================================== */
+
+        .route.feedback {
+
+            stroke:
+                #00f6ff !important;
+
+            stroke-width:
+                2.5px;
+
+            stroke-dasharray:
+                8 8;
+
+            opacity:
+                0.7;
+
+        }
+
+
+        /* =====================================
+           PARTÍCULA
+           ===================================== */
+
+        .particle.hormone {
+
+            fill:
+                #ffe600 !important;
+
+            filter:
+                url(#glow);
+
+        }
+
+
+        /* =====================================
+           INFORMACIÓN EXTRA
+           ===================================== */
+
+        .hormone-extra-info {
+
+            margin-top:
+                5px;
+
+            padding:
+                12px;
+
+            border:
+                1px solid
+                rgba(0,246,255,0.10);
+
+            background:
+                rgba(0,246,255,0.025);
+
+        }
+
+
+        .extra-title {
+
+            color:
+                #ffe600;
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                2px;
+
+            margin-bottom:
+                12px;
+
+        }
+
+
+        .extra-row {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                4px;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .extra-row:last-child {
+
+            margin-bottom:
+                0;
+
+        }
+
+
+        .extra-row span {
+
+            color:
+                #00f6ff;
+
+            font-size:
+                7px;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                1.5px;
+
+        }
+
+
+        .extra-row strong {
+
+            color:
+                #b5d1d7;
+
+            font-size:
+                10px;
+
+            line-height:
+                1.45;
+
+            font-weight:
+                400;
+
+        }
+
+
+        /* =====================================
+           INFORMACIÓN AL PASAR SOBRE ÓRGANO
+           ===================================== */
+
+        .organ[data-info]::after {
+
+            content:
+                attr(data-info);
+
+            position:
+                absolute;
+
+            bottom:
+                calc(100% + 8px);
+
+            left:
+                50%;
+
+            transform:
+                translateX(-50%);
+
+            padding:
+                6px 8px;
+
+            min-width:
+                120px;
+
+            max-width:
+                190px;
+
+            background:
+                rgba(3,12,18,0.96);
+
+            border:
+                1px solid
+                rgba(0,246,255,0.35);
+
+            color:
+                #d8faff;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.4;
+
+            text-align:
+                center;
+
+            pointer-events:
+                none;
+
+            opacity:
+                0;
+
+            transition:
+                opacity .2s ease;
+
+            z-index:
+                100;
+
+        }
+
+
+        .organ:hover[data-info]::after {
+
+            opacity:
+                1;
+
+        }
+
+    `;
+
+    document.head.appendChild(
+        style
+    );
+
+}
+
+
+/* =========================================================
+   REDIBUJAR AL CAMBIAR TAMAÑO
+   ========================================================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        requestAnimationFrame(() => {
+
+            const hormone =
+                hormones[currentIndex];
+
+            highlightOrgans(
+                hormone
+            );
+
+            animateRoute(
+                hormone
+            );
+
+        });
+
+    }
+);
 
 
 /* =========================================================
@@ -1784,33 +2551,45 @@ document.addEventListener(
     "keydown",
     event => {
 
-        if (event.key === "ArrowRight") {
+        if (
+            event.target.tagName ===
+            "INPUT"
+        ) {
+            return;
+        }
+
+
+        if (
+            event.key ===
+            "ArrowRight"
+        ) {
 
             nextHormone();
 
         }
 
 
-        if (event.key === "ArrowLeft") {
+        if (
+            event.key ===
+            "ArrowLeft"
+        ) {
 
             previousHormone();
 
         }
 
 
-        if (event.key === " ") {
+        if (
+            event.code ===
+            "Space"
+        ) {
 
             event.preventDefault();
 
-
             if (playing) {
-
-                pauseAnimation();
-
+                stopPlayback();
             } else {
-
-                playAnimation();
-
+                startPlayback();
             }
 
         }
@@ -1820,50 +2599,51 @@ document.addEventListener(
 
 
 /* =========================================================
-   REDIBUJAR RUTA AL CAMBIAR TAMAÑO
-   ========================================================= */
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        const hormone =
-            hormones[currentIndex];
-
-        if (!hormone) return;
-
-        animateRoute(hormone);
-
-    }
-);
-
-
-/* =========================================================
-   DETENER ANIMACIÓN AL SALIR
+   LIMPIEZA
    ========================================================= */
 
 window.addEventListener(
     "beforeunload",
     () => {
 
-        clearInterval(interval);
+        stopPlayback();
 
-        if (animationFrame) {
+        cancelAnimationFrame(
+            animationFrame
+        );
 
-            cancelAnimationFrame(
-                animationFrame
-            );
-
-        }
+        cancelAnimationFrame(
+            feedbackAnimationFrame
+        );
 
     }
 );
 
 
 /* =========================================================
-   INICIO
+   INICIALIZACIÓN
    ========================================================= */
 
-renderHormoneList();
+function initializeApp() {
 
-showHormone();
+    injectDynamicStyles();
+
+    totalHormones.textContent =
+        hormones.length;
+
+    renderHormoneList();
+
+    setupOrganInteractions();
+
+    showHormone(
+        0
+    );
+
+}
+
+
+/* =========================================================
+   INICIAR
+   ========================================================= */
+
+initializeApp();
